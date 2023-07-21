@@ -1,7 +1,7 @@
 import java.util.*;
 public class loops {
     public static void main(String [] args){
-    //while loo
+    //while loop
     // print hello world 100 times.
 
     // int value = 0;

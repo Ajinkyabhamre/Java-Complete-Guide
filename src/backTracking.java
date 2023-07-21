@@ -381,8 +381,8 @@ public static void main(String[] args) {
 
 //Find Permutations
 
-    String str = "abc";
-    findPermutations(str, "");
+    // String str = "abc";
+    // findPermutations(str, "");
 
 //N-Queens
     // int n = 4;
@@ -426,13 +426,13 @@ public static void main(String[] args) {
 
 //Question 1 : Rat in a Maze
 
-// int maze[][] =  {
-// { 1, 0, 0, 0 },
-// {1, 1, 0, 1 },
-// { 0, 1, 0, 0 },
-// { 1, 1, 1, 1 } };
+int maze[][] =  {
+{ 1, 0, 0, 0 },
+{1, 1, 0, 1 },
+{ 0, 1, 0, 0 },
+{ 1, 1, 1, 1 } };
 
-// RatinMaze(maze);
+RatinMaze(maze);
 
 
 //Q2. Keypad Combinations
