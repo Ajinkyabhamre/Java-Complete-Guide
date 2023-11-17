@@ -154,8 +154,37 @@ static class Point implements Comparable<Point>{
 
 }
 
+static class Row implements Comparable<Row>{
+    int soldiers; int idx;
+    public Row( int soldiers, int idx){
+        this.soldiers = soldiers;
+        this.idx = idx;
+    }
+    @Override
+    public int compareTo(Row r2){
+        if(this.soldiers == r2.soldiers){
+            return this.idx - r2.idx;
+        }else{
+           return  this.soldiers - r2.soldiers;
+        }
+    }
+}
 
+static class Pair implements Comparable<Pair>{
+    int val; int idx;
+    public Pair(int val, int idx){
+        this.val = val;
+        this.idx = idx;
+    }
+    @Override
+    public int compareTo(Pair P2){
+    //ascending
+    //return this.val - P2.val
 
+    //descending
+    return P2.val - this.val ;
+    }
+}
 
 
     public static void main(String[] args) {
@@ -214,22 +243,79 @@ static class Point implements Comparable<Point>{
 //we are given N points in 2D plane which are locations of N cars 
 //if we are at origin, print the nearest k cars
 
-int pts[][] = {{3, 3}, {5, -1}, {-2, 4}};
-int k = 2 ;
+    // int pts[][] = {{3, 3}, {5, -1}, {-2, 4}};
+    // int k = 2 ;
 
-PriorityQueue<Point> pq = new PriorityQueue<>();
-for (int i = 0; i < pts.length; i++) {
-    int distSq = pts[i][0]*pts[i][0] + pts[i][1]*pts[i][1];
-    pq.add(new Point(pts[i][0], pts[i][1], distSq, i));
+    // PriorityQueue<Point> pq = new PriorityQueue<>();
+    // for (int i = 0; i < pts.length; i++) {
+    //     int distSq = pts[i][0]*pts[i][0] + pts[i][1]*pts[i][1];
+    //     pq.add(new Point(pts[i][0], pts[i][1], distSq, i));
+    // }
+
+    // for (int i = 0; i < k; i++) {
+    //     System.out.println("C"+pq.remove().idx);
+    // }
+
+//Connecting N ropes
+    // int ropes[] = {2,3,3,4,6};
+    // PriorityQueue<Integer> pqRopes = new PriorityQueue<>();
+    // for(int i =0; i< ropes.length; i++){
+    //     pqRopes.add(ropes[i]);
+    // }
+    // int cost = 0;
+    // while(pqRopes.size() > 1){
+    //     int min1 = pqRopes.remove();
+    //     int min2 = pqRopes.remove();
+    //     cost += min1 + min2; 
+    //     pqRopes.add(min1+min2);
+    // }
+
+    // System.out.println("cost of connecting N ropes are " + cost);
+
+//Weakest Soldier
+
+// int army[][] = {{1,0,0,0},
+//                 {1,1,1,1},
+//                 {1,0,0,0},
+//                 {1,0,0,0}};
+// int k = 2;
+
+// PriorityQueue<Row>pqWS = new PriorityQueue<>();
+// for(int i=0; i< army.length; i++){
+// int count = 0;
+//     for(int j = 0; j < army[0].length; j++){
+//     count += army[i][j] == 1 ? 1 : 0 ;
+//     }
+// pqWS.add(new Row(count, i));
+// }
+
+// for(int i =0; i < k; i++){
+// System.out.println("R"+ pqWS.remove().idx);
+// }
+
+//Sliding Window 
+int array[] = {1,3,-1,-3,5,3,6,7}; 
+int k = 3; //window size
+int res[] = new int[array.length - k + 1];  //n - k + 1
+
+PriorityQueue<Pair> pq = new PriorityQueue<>();
+//1st window
+for(int i=0; i<k; i++){
+pq.add(new Pair(array[i], i));
+}
+res[0] = pq.peek().val ;
+
+for(int i = k; i < array.length; i++){
+    while (pq.size() > 0 && pq.peek().idx <= (i - k)) {
+        pq.remove();
+    }
+    pq.add(new Pair(array[i], i));
+    res[i - k + 1] = pq.peek().val;
 }
 
-for (int i = 0; i < k; i++) {
-    System.out.println("C"+pq.remove().idx);
+for(int i = 0; i < res.length; i++){
+System.out.print(res[i] + " ");
 }
-
-
-
-
 
     }
 }
