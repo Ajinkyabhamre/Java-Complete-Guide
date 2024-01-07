@@ -1,1 +1,1 @@
-graph
+static class Edge{
