@@ -1,4 +1,4 @@
-public class Trie {
+public class Trie1 {
     static class Node{
         Node children[] = new Node[26];
         boolean eow =  false ;
@@ -22,13 +22,31 @@ public class Trie {
             curr = curr.children[idx];
         }
 
-        curr.eow = true ;
+        curr.eow = true ; 
 
+    }
+
+    public static boolean Search(String key){   //O(L) --> largest word
+        Node curr = root;
+        for (int level = 0; level < key.length(); level++) {
+            int idx = key.charAt(level) - 'a';
+            if (curr.children[idx] == null) {
+                return false;
+            }
+            curr = curr.children[idx];
+        }
+        return curr.eow = true;
     }
     public static void main(String[] args) {
     String words[] = {"the", "a", "there", "their", "any", "thee"};
     for (int i = 0; i < words.length; i++) {
         insert(words[i]);
     }
+
+System.out.println(Search("thee"));
+System.out.println(Search("thor"));
+
+
+
     }
 }
