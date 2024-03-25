@@ -57,5 +57,7 @@ public class Trie6 {
         }
         longestWord(root, new StringBuilder(""));
         System.out.println(ans);
+
+        
     }
 }
